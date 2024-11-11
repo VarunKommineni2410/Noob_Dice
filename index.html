@@ -96,6 +96,12 @@
         box-sizing: border-box;
       }
 
+      .dice-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Space between the two dice elements */
+        }
+
     </style>
   </head>
 
@@ -107,8 +113,10 @@
       <h3 id="dice" style="display:none"></h3>
       <p></p>
       <button id="btn2">Double Roll Dice</button>
+      <div class="dice-container">
       <h3 id="dice1" style="display:none"></h3>
       <h3 id="dice2" style="display:none"></h3>
+      </div>
       <h3 id="total" style="display:none"></h3>
     </center>
 
