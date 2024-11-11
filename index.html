@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Noob Dice!!!</title>
+    <style>
+
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      h3 {
+        font-size: 2em;
+        margin: 10px;
+      }
+
+      /* Button styles */
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      /* Dice face style */
+      .dice {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        margin: 10px;
+        line-height: 60px;
+        border: 2px solid #333;
+        border-radius: 10%;
+        text-align: center;
+        font-size: 2em;
+        position: relative;
+        background-color: white;
+      }
+
+      /* Dice roll animation */
+      @keyframes shake {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(10deg); }
+        50% { transform: rotate(0deg); }
+        75% { transform: rotate(-10deg); }
+        100% { transform: rotate(0deg); }
+      }
+
+      .rolling {
+        animation: shake 0.6s ease;
+      }
+      
+      #dice{
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        margin: 10px;
+        line-height: 60px;
+        border: 2px solid #333;
+        border-radius: 10%;
+        text-align: center;
+        font-size: 2em;
+        position: relative;
+        background-color: white;
+        box-sizing: border-box;
+      }
+       #dice1{
+       display: inline-block;
+        width: 60px;
+        height: 60px;
+        margin: 10px;
+        line-height: 60px;
+        border: 2px solid #333;
+        border-radius: 10%;
+        text-align: center;
+        font-size: 2em;
+        position: relative;
+        background-color: white;
+        box-sizing: border-box;
+      }
+      
+       #dice2{
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        margin: 10px;
+        line-height: 60px;
+        border: 2px solid #333;
+        border-radius: 10%;
+        text-align: center;
+        font-size: 2em;
+        position: relative;
+        background-color: white;
+        box-sizing: border-box;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <center>
+      <h2>Press Here to Roll Dice</h2>
+      <button id="btn1">Single Roll Dice</button>
+      <h3 id="dice" style="display:none"></h3>
+      <p></p>
+      <button id="btn2">Double Roll Dice</button>
+      <h3 id="dice1" style="display:none"></h3>
+      <h3 id="dice2" style="display:none"></h3>
+      <h3 id="total" style="display:none"></h3>
+    </center>
+
+  </body>
+
+  <script>
+
+    function rollDiceAnimation(diceId) {
+      let dice = document.getElementById(diceId);
+      dice.classList.add("rolling");
+
+      setTimeout(function () {
+        dice.classList.remove("rolling");
+      }, 600);
+    }
+
+    // Function to set the number of dots on the dice based on the number rolled
+    function setDiceNumber(diceId, num) {
+      let dice = document.getElementById(diceId);
+      dice.innerHTML = num;
+    }
+
+    // Single Dice Roll
+    document.getElementById("btn1").addEventListener("click", function () {
+      let num1 = Math.floor(Math.random() * 6) + 1;
+      document.getElementById("dice").style.display = "block";
+      setDiceNumber("dice", num1);
+
+      document.getElementById("dice1").style.display = "none";
+      document.getElementById("dice2").style.display = "none";
+
+      rollDiceAnimation("dice");
+    });
+
+    // Double Dice Roll
+    document.getElementById("btn2").addEventListener("click", function () {
+      let num1 = Math.floor(Math.random() * 6) + 1;
+      let num2 = Math.floor(Math.random() * 6) + 1;
+
+      document.getElementById("dice1").style.display = "block";
+      setDiceNumber("dice1", num1);
+
+      document.getElementById("dice2").style.display = "block";
+      setDiceNumber("dice2", num2);
+
+      document.getElementById("dice").style.display = "none";
+
+      if (num1 == 6 && num2 == 6) {
+        alert("You rolled double sixes!");
+      }
+
+      rollDiceAnimation("dice1");
+      rollDiceAnimation("dice2");
+      document.getElementById("total").style.display = "block";
+      document.getElementById("total").innerHTML="Total: "+(num1+num2)
+    });
+
+    // Button hover effects
+    document.getElementById("btn1").onmouseover = function () {
+      this.style.color = "white";
+      this.style.background = "black";
+    };
+    document.getElementById("btn1").onmouseout = function () {
+      this.style.color = "";
+      this.style.background = "";
+    };
+    document.getElementById("btn2").onmouseover = function () {
+      this.style.color = "white";
+      this.style.background = "black";
+    };
+    document.getElementById("btn2").onmouseout = function () {
+      this.style.color = "";
+      this.style.background = "";
+    };
+    
+  </script>
+
+</html>
